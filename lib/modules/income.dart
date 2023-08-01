@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/models/Income.dart';
@@ -12,13 +14,14 @@ class IncomeWidget extends StatelessWidget {
         padding: EdgeInsets.only(top: 5, left: 5, right: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           verticalDirection: VerticalDirection.down,
-          children: [
+          children:  [
             FutureBuilder<List<Income>>(
                 future: fetchIncomes(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                         child: CircularProgressIndicator());
                   } else {
                     return Container(
@@ -29,18 +32,15 @@ class IncomeWidget extends StatelessWidget {
                                     title: Row(
                                       children: [
                                         IconButton(
-                                          icon: Icon(
+                                          icon: const Icon(
                                               CupertinoIcons
                                                   .money_dollar_circle,
                                               color: Colors.green),
                                           onPressed: () => 1,
                                         ),
                                         Text(
-                                          '${snapshot.data![index].title}' +
-                                              ' : ' +
-                                              '${snapshot.data![index].amount}' +
-                                              ' XOF',
-                                          style: TextStyle(
+                                          '${snapshot.data![index].title} : ${snapshot.data![index].amount} XOF',
+                                          style: const TextStyle(
                                               fontFamily: 'Dosis'),
                                         ),
                                       ],
@@ -48,13 +48,11 @@ class IncomeWidget extends StatelessWidget {
                           },
                           itemCount: snapshot.data!.length,
                           shrinkWrap: true,
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           scrollDirection: Axis.vertical,
                         ));
                   }
 
-                  return Center(
-                      child: CircularProgressIndicator());
                 }),
           ],
         ));

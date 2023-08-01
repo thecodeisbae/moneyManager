@@ -2,6 +2,8 @@ import 'package:myapp/models/Income.dart';
 import 'package:myapp/models/Expense.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:developer';
+
 
 List<Income> parseIncomes(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
@@ -10,7 +12,7 @@ List<Income> parseIncomes(String responseBody) {
 
 Future<List<Income>> fetchIncomes() async {
   final response = await http
-      .get(Uri.parse("http://10.0.4.111/apimoney/www?view=getIncomes"));
+      .get(Uri.parse("https://64bd61c62320b36433c7abb0.mockapi.io/money/incomes"));
   if (response.statusCode == 200) {
     var contents = jsonDecode(response.body);
     List<Income> incomesList = [];
@@ -19,6 +21,7 @@ Future<List<Income>> fetchIncomes() async {
           id: value['id'], title: value['title'], amount: value['amount']));
     }
     ;
+
     return incomesList;
   } else {
     throw Exception('Unable to fetch incomes from the REST API');

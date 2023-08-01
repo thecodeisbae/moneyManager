@@ -58,21 +58,24 @@ class _MainWidgetState extends State<MainWidget> {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.home),
-                  title: Text('Home', style: TextStyle(fontFamily: 'Dosis'))),
+                  label: 'Home'
+              ),
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.arrow_down),
-                  title:
-                      Text('Incomes', style: TextStyle(fontFamily: 'Dosis'))),
+                  label:'Incomes'
+              ),
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.arrow_up),
-                  title:
-                      Text('Expenses', style: TextStyle(fontFamily: 'Dosis'))),
+                  label:'Expenses'
+              ),
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.chart_pie),
-                  title: Text('Stats', style: TextStyle(fontFamily: 'Dosis'))),
+                  label: 'Stats'
+              ),
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.question_circle),
-                  title: Text('About', style: TextStyle(fontFamily: 'Dosis'))),
+                  label: 'About'
+              ),
             ],
           ),
           tabBuilder: (BuildContext context, int index) {
@@ -81,17 +84,17 @@ class _MainWidgetState extends State<MainWidget> {
                 switch (content) {
                   case 'Home':
                     {
-                      return HomeWidget();
+                      return const HomeWidget();
                     }
                     break;
                   case 'Incomes':
                     {
-                      return IncomeWidget();
+                      return const IncomeWidget();
                     }
                     break;
                   case 'Expenses':
                     {
-                      return ExpenseWidget();
+                      return const ExpenseWidget();
                     }
                     break;
                   case 'Stats':
@@ -102,18 +105,12 @@ class _MainWidgetState extends State<MainWidget> {
                   default:
                     return Center(
                       child: Text(
-                        'Content of tab ' + content,
-                        style: TextStyle(fontFamily: 'Dosis'),
+                        'Content of tab $content',
+                        style: const TextStyle(fontFamily: 'Dosis'),
                       ),
                     );
                     break;
                 }
-                return Center(
-                  child: Text(
-                    'Nothing to show up',
-                    style: TextStyle(fontFamily: 'Dosis'),
-                  ),
-                );
               },
             );
           },
